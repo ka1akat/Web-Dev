@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Pricing (Replica)</title>
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #0d1117;
+      --muted: #57606a;
+      --border: #d0d7de;
+      --card: #ffffff;
+      --shadow: 0 8px 24px rgba(140,149,159,0.2);
+      --blue: #0969da;
+      --blue-strong: #0550ae;
+      --pill: #ddf4ff;
+      --pill-text: #0550ae;
+      --success: #1a7f37;
+      --success-bg: #dafbe1;
+      --btn: #111827;
+      --btn-text: #ffffff;
+      --btn-light: #f6f8fa;
+    }
+
+    *{ box-sizing: border-box; }
+
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    a{ color: inherit; }
+
+    .container{
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    /* Minimal header placeholder (allowed, but not required to replicate) */
+    header{
+      border-bottom: 1px solid #eee;
+      background: #fff;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight: 700;
+    }
+
+    .brand-dot{
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #111;
+      display:inline-block;
+    }
+
+    nav ul{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      gap:14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    nav a{
+      text-decoration:none;
+    }
+
+    nav a:hover{
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* HERO */
+    main{
+      padding: 56px 0 72px;
+    }
+
+    .hero{
+      text-align:center;
+      margin-bottom: 38px;
+    }
+
+    .hero h1{
+      font-size: clamp(28px, 3vw, 44px);
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p{
+      margin: 0 auto 18px;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid #0b0f14;
+      background: #0b0f14;
+      color: #fff;
+      font-weight: 700;
+      cursor:pointer;
+    }
+
+    .cta:hover{ background:#000; }
+
+    /* Pricing cards */
+    .pricing-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      align-items: stretch;
+      margin-top: 22px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 16px;
+      box-shadow: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card.recommended{
+      border: 2px solid var(--blue);
+      box-shadow: var(--shadow);
+    }
+
+    .badge{
+      position:absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--pill);
+      color: var(--pill-text);
+    }
+
+    .plan-name{
+      font-size: 16px;
+      font-weight: 800;
+      margin: 4px 0 4px;
+      text-align:center;
+    }
+
+    .plan-desc{
+      color: var(--muted);
+      font-size: 12px;
+      text-align:center;
+      margin: 0 0 14px;
+      min-height: 34px;
+    }
+
+    .price-row{
+      text-align:center;
+      margin: 6px 0 14px;
+    }
+
+    .price{
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .per{
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .card-actions{
+      display:flex;
+      gap: 10px;
+      justify-content:center;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .btn{
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-weight: 800;
+      font-size: 13px;
+      border: 1px solid var(--border);
+      background: var(--btn-light);
+      cursor:pointer;
+      min-width: 130px;
+    }
+
+    .btn.primary{
+      background: var(--btn);
+      border-color: var(--btn);
+      color: var(--btn-text);
+    }
+
+    .btn.primary:hover{ filter: brightness(0.95); }
+    .btn:hover{ background: #eef2f7; }
+
+    .features{
+      margin: 0;
+      padding-left: 18px;
+      color: #24292f;
+      font-size: 13px;
+    }
+
+    .features li{
+      margin: 9px 0;
+    }
+
+    .addon-note{
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Additional add-ons */
+    .addons{
+      margin-top: 42px;
+    }
+
+    .addons-header{
+      display:flex;
+      align-items:flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .addons-header h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing: -0.01em;
+    }
+
+    .addons-header p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 640px;
+    }
+
+    .addons-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .addon-card{
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      background:#fff;
+      min-height: 140px;
+      position: relative;
+    }
+
+    .addon-pill{
+      display:inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--success-bg);
+      color: var(--success);
+      margin-bottom: 10px;
+    }
+
+    .addon-title{
+      font-size: 15px;
+      font-weight: 900;
+      margin: 0 0 6px;
+    }
+
+    .addon-text{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Responsive breakpoint: stack cards on mobile */
+    @media (max-width: 860px){
+      nav{ display:none; } /* keep simple */
+      .pricing-grid{ grid-template-columns: 1fr; }
+      .addons-grid{ grid-template-columns: 1fr; }
+      main{ padding-top: 34px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container topbar">
+      <div class="brand" aria-label="GitHub">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>GitHub</span>
+      </div>
+
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#">Platform</a></li>
+          <li><a href="#">Solutions</a></li>
+          <li><a href="#">Resources</a></li>
+          <li><a href="#">Open Source</a></li>
+          <li><a href="#">Enterprise</a></li>
+          <li><a href="#" aria-current="page">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <form aria-label="Search" action="#" method="get">
+        <label for="q" style="position:absolute;left:-9999px;">Search</label>
+        <input id="q" name="q" type="search" placeholder="Search"
+               style="padding:8px 10px;border:1px solid var(--border);border-radius:8px;min-width:180px;">
+      </form>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-title">
+        <h1 id="hero-title">Try the Copilot-powered platform</h1>
+        <p>
+          We get it, there’s a lot you can do with GitHub. That’s why we’ve packed it all into a single trial that includes
+          GitHub Enterprise, Copilot, and Advanced Security.
+        </p>
+        <button class="cta" type="button">Start free for 30 days</button>
+      </section>
+
+      <!-- PRICING TIERS -->
+      <section aria-labelledby="pricing-title">
+        <h2 id="pricing-title" style="position:absolute;left:-9999px;">Pricing tiers</h2>
+
+        <div class="pricing-grid">
+          <!-- Free -->
+          <article class="card" aria-label="Free plan">
+            <h3 class="plan-name">Free</h3>
+            <p class="plan-desc">The basics for individuals and organizations</p>
+
+            <div class="price-row">
+              <span class="price">$0</span>
+              <span class="per">USD per user/month</span>
+            </div>
+
+            <div class="card-actions">
+              <button class="btn primary" type="button">Join for free</button>
+            </div>
+
+            <ul class="features">
+              <li>Unlimited public/private repositories</li>
+              <li>Dependabot security and version updates</li>
+              <li>2,000 CI/CD minutes/month</li>
+              <li>500MB of Packages storage</li>
+              <li>Issues &amp; Projects</li>
+              <li>Community support</li>
+            </ul>
+
+            <p class="addon-note"><strong>FEATURED ADD-ONS</strong><br>GitHub Copilot Access • GitHub Codespaces Access</p>
+          </article>
+
+          <!-- Team -->
+          <article class="card" aria-label="Team plan">
+            <h3 class="plan-name">Team</h3>
+            <p class="plan-desc">Advanced collaboration for individuals and organizations</p>
+
+            <div class="price-row">
+              <span class="price">$4</span>
+              <span class="per">USD per user/month</span>
+            </div>
+
+            <div class="card-actions">
+              <button class="btn primary" type="button">Continue with Team</button>
+            </div>
+
+            <ul class="features">
+              <li>Everything included in Free, plus…</li>
+              <li>Access to GitHub Codespaces</li>
+              <li>Protected branches</li>
+              <li>Multiple reviewers in pull requests</li>
+              <li>Draft pull requests</li>
