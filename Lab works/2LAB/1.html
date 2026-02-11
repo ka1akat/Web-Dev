@@ -1,226 +1,170 @@
 <!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Facebook — Вход</title>
-  <style>
-    :root {
-      --fb-blue: #1877f2;
-      --bg: #f0f2f5;
-      --text: #1c1e21;
-      --muted: #606770;
-      --card: #ffffff;
-      --border: #dddfe2;
-      --shadow: 0 2px 10px rgba(0,0,0,.12);
-      --green: #42b72a;
-    }
-
-    *{ box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;   /* vertical center */
-      justify-content: center; /* horizontal center */
-      padding: 24px;
-    }
-
-    .wrap {
-      width: min(980px, 100%);
-      display: flex;
-      gap: 48px;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .left {
-      flex: 1;
-      min-width: 280px;
-    }
-
-    .logo {
-      font-size: 56px;
-      font-weight: 800;
-      color: var(--fb-blue);
-      letter-spacing: -1px;
-      line-height: 1;
-      margin: 0 0 12px;
-    }
-
-    .subtitle {
-      margin: 0;
-      font-size: 24px;
-      color: var(--text);
-      max-width: 480px;
-    }
-
-    .right {
-      width: min(396px, 100%);
-    }
-
-    .card {
-      background: var(--card);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      padding: 16px;
-    }
-
-    .field {
-      width: 100%;
-      display: block;
-      padding: 14px 16px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 16px;
-      outline: none;
-      margin-bottom: 12px;
-    }
-
-    .field:focus {
-      border-color: var(--fb-blue);
-      box-shadow: 0 0 0 2px rgba(24,119,242,.2);
-    }
-
-    .btn {
-      width: 100%;
-      border: none;
-      border-radius: 6px;
-      padding: 12px 16px;
-      font-size: 18px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .btn-login {
-      background: var(--fb-blue);
-      color: #fff;
-    }
-
-    .btn-login:hover { filter: brightness(0.95); }
-
-    .forgot {
-      display: block;
-      text-align: center;
-      margin: 14px 0;
-      color: var(--fb-blue);
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .forgot:hover { text-decoration: underline; }
-
-    .divider {
-      border: 0;
-      border-top: 1px solid var(--border);
-      margin: 16px 0;
-    }
-
-    .btn-create {
-      background: var(--green);
-      color: #fff;
-      width: auto;
-      display: block;
-      margin: 0 auto;
-      padding: 12px 18px;
-      font-size: 16px;
-      border-radius: 6px;
-    }
-
-    .btn-create:hover { filter: brightness(0.95); }
-
-    .below {
-      margin-top: 18px;
-      text-align: center;
-      font-size: 14px;
-      color: var(--text);
-    }
-
-    .below a {
-      color: var(--text);
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .below a:hover { text-decoration: underline; }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      body { padding: 16px; }
-      .wrap {
-        flex-direction: column;
-        gap: 24px;
-        text-align: center;
+<html>
+  <head>
+    <title>Facebook Login</title>
+    <style>
+      * {
+        box-sizing: border-box;
       }
-      .subtitle { margin: 0 auto; }
-      .left { margin-top: 8px; }
-    }
+  
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f0f2f5;
+        color: #1c1e21;
+      }
+  
+      .page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+      }
+  
+      .container {
+        width: 980px;
+        display: flex;
+        gap: 80px;
+        align-items: center;
+      }
 
-    /* Accessibility helper */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-  </style>
-</head>
+      .left {
+        flex: 1;
+      }
+  
+      .logo {
+        margin: 0;
+        font-size: 60px;
+        font-weight: 800;
+        color: #1877f2;
+        letter-spacing: -1px;
+      }
+  
+      .subtitle {
+        margin-top: 10px;
+        font-size: 22px;
+        line-height: 1.3;
+        max-width: 420px;
+      }
+  
+      .right {
+        width: 400px;
+      }
+  
+      .card {
+        background: white;
+        border-radius: 10px;
+        padding: 16px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+  
+      .input {
+        height: 48px;
+        border: 1px solid #dddfe2;
+        border-radius: 6px;
+        padding: 0 14px;
+        font-size: 16px;
+      }
+  
+      .btn {
+        height: 48px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .btn-primary {
+        background: #1877f2;
+        color: white;
+      }
+  
+      .btn-primary:hover {
+        filter: brightness(0.95);
+      }
+  
+      .link {
+        text-align: center;
+        color: #1877f2;
+        text-decoration: none;
+        font-size: 14px;
+      }
+  
+      .link:hover {
+        text-decoration: underline;
+      }
+  
+      .divider {
+        height: 1px;
+        background: #dadde1;
+        margin: 8px 0;
+      }
+  
+      .btn-green {
+        background: #42b72a;
+        color: white;
+        width: 60%;
+        align-self: center;
+      }
+  
+      .btn-green:hover {
+        filter: brightness(0.95);
+      }
+  
+      .below {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 18px;
+      }
+  
+      .below-link {
+        font-weight: 700;
+        color: #1c1e21;
+        text-decoration: none;
+      }
+  
+      .below-link:hover {
+        text-decoration: underline;
+      }
+    </style>  
+  </head>
+  <body>
 
-<body>
-  <main class="wrap">
-    <section class="left" aria-label="Описание">
-      <h1 class="logo">facebook</h1>
-      <p class="subtitle">Facebook помогает вам всегда оставаться на связи и общаться со своими знакомыми.</p>
-    </section>
-
-    <section class="right" aria-label="Форма входа">
-      <div class="card">
-        <form action="#" method="post">
-          <label class="sr-only" for="login">Электронный адрес или номер телефона</label>
-          <input
-            class="field"
-            id="login"
-            name="login"
-            type="text"
-            placeholder="Электронный адрес или номер телефона"
-            autocomplete="username"
-            required
-          />
-
-          <label class="sr-only" for="password">Пароль</label>
-          <input
-            class="field"
-            id="password"
-            name="password"
-            type="password"
-            placeholder="Пароль"
-            autocomplete="current-password"
-            required
-          />
-
-          <button class="btn btn-login" type="submit">Вход</button>
-
-          <a class="forgot" href="#">Забыли пароль?</a>
-
-          <hr class="divider" />
-
-          <button class="btn btn-create" type="button">Создать новый аккаунт</button>
-        </form>
-      </div>
-
-      <p class="below">
-        <a href="#">Создать Страницу</a> знаменитости, музыкальной группы или компании.
-      </p>
-    </section>
-  </main>
-</body>
-</html>
+    <main class="page">
+      <section class="container">
+  
+        <div class="left">
+          <h1 class="logo">facebook</h1>
+          <p class="subtitle">
+            Facebook helps you connect and share with the people in your life.
+          </p>
+        </div>
+  
+        <div class="right">
+          <form class="card" action="#" method="post">
+            <input class="input" type="text" name="email" placeholder="Email or phone number" required />
+            <input class="input" type="password" name="password" placeholder="Password" required />
+  
+            <button class="btn btn-primary" type="submit">Log In</button>
+  
+            <a class="link" href="#">Forgot password?</a>
+  
+            <div class="divider"></div>
+  
+            <button class="btn btn-green" type="button">Create new account</button>
+          </form>
+  
+          <p class="below">
+            <a href="#" class="below-link">Create a Page</a> for a celebrity, brand or business.
+          </p>
+        </div>
+  
+      </section>
+    </main>
+  
+  </body>
+  </html>

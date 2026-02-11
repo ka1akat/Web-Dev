@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+
+  <p>Before the script...</p>
+  <script>
+   let message;
+   message = 'Hello!';
+
+   alert(message); 
+   //String
+   let name = "John";
+   alert( `Hello, ${name}!` ); // Hello, John!
+   alert( `the result is ${1 + 2}` ); // the result is 3
+   
+   //Task1
+   let nm = "Ilya";
+
+   alert( `hello ${1}` ); // ?
+
+   alert( `hello ${"nm"}` ); // ?
+
+   alert( `hello ${nm}` ); // ? 
+
+   //Interaction: alert, prompt, confirm
+   //PROMPT
+   let age = prompt('How old are you?',100);
+   alert(`You are ${age} years old!`); 
+
+   //CONFIRM
+   let result = confirm("Are you sure?");
+
+   //Comparison
+   alert( '2' > 1 ); // true, string '2' becomes a number 2
+   alert( '01' == 1 ); // true, string '01' becomes a number 1
+
+   //Conditions
+   let a = prompt('age?', 18);
+
+   let m = (age < 3) ? 'Hi, baby!' :
+  (age < 18) ? 'Hello!' :
+  (age < 100) ? 'Greetings!' :
+  'What an unusual age!';
+
+   alert( message );
+
+  </script>
+
+
+  <p>...After the script.</p>
+
+</body>
+
+</html>
