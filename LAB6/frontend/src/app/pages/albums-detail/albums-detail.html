@@ -1,0 +1,12 @@
+<h2>Album Detail</h2>
+
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="!loading && error">{{ error }}</div>
+
+<div *ngIf="!loading && album">
+  <p><b>ID:</b> {{ album.id }}</p>
+  <p><b>Title:</b> {{ album.title }}</p>
+  <p><b>UserID:</b> {{ album.userId }}</p>
+
+  <a routerLink="/albums">Back</a>
+</div>
