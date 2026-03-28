@@ -1,6 +1,9 @@
 from django.http import JsonResponse
+from rest_framework import viewsets
 from .models import Product, Category
-
+from .serializers import CategorySerializer, ProductSerializer
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 def products_list(request):
     products = Product.objects.all()
@@ -77,3 +80,16 @@ def category_products(request, id):
 
     return JsonResponse(data, safe=False)
 
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+    @action(detail=True, methods=['get'])
+    def products(self, request, pk=None):
+        products = Product.objects.filter(category_id=pk)
+        serializer = ProductSerializer(products, many=True)
+        return Response(serializer.data)
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
